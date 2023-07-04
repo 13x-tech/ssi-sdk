@@ -8,20 +8,21 @@ type (
 )
 
 const (
-	Ed25519        KeyType = "Ed25519"
-	X25519         KeyType = "X25519"
-	SECP256k1      KeyType = "secp256k1"
-	SECP256k1ECDSA KeyType = "secp256k1-ECDSA"
-	P224           KeyType = "P-224"
-	P256           KeyType = "P-256"
-	P384           KeyType = "P-384"
-	P521           KeyType = "P-521"
-	RSA            KeyType = "RSA"
-	BLS12381G1     KeyType = "BLS12381G1"
-	BLS12381G2     KeyType = "BLS12381G2"
-	Dilithium2     KeyType = "Dilithium2"
-	Dilithium3     KeyType = "Dilithium3"
-	Dilithium5     KeyType = "Dilithium5"
+	Ed25519          KeyType = "Ed25519"
+	X25519           KeyType = "X25519"
+	SECP256k1        KeyType = "secp256k1"
+	SECP256k1ECDSA   KeyType = "secp256k1-ECDSA"
+	SECP256k1Schnorr KeyType = "secp256k1-Schnorr"
+	P224             KeyType = "P-224"
+	P256             KeyType = "P-256"
+	P384             KeyType = "P-384"
+	P521             KeyType = "P-521"
+	RSA              KeyType = "RSA"
+	BLS12381G1       KeyType = "BLS12381G1"
+	BLS12381G2       KeyType = "BLS12381G2"
+	Dilithium2       KeyType = "Dilithium2"
+	Dilithium3       KeyType = "Dilithium3"
+	Dilithium5       KeyType = "Dilithium5"
 
 	RSAKeySize int = 2048
 )
@@ -66,7 +67,7 @@ func IsSupportedKeyType(kt KeyType) bool {
 
 // GetSupportedKeyTypes returns a list of supported key types
 func GetSupportedKeyTypes() []KeyType {
-	return []KeyType{Ed25519, X25519, SECP256k1, SECP256k1ECDSA, P224, P256, P384, P521, RSA}
+	return []KeyType{Ed25519, X25519, SECP256k1, SECP256k1ECDSA, SECP256k1Schnorr, P224, P256, P384, P521, RSA}
 }
 
 // GetExperimentalKeyTypes returns a list of experimental key types

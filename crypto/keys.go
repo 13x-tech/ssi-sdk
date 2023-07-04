@@ -20,6 +20,7 @@ import (
 	"github.com/pkg/errors"
 
 	secp "github.com/decred/dcrd/dcrec/secp256k1/v4"
+	schnorr "github.com/decred/dcrd/dcrec/secp256k1/v4/schnorr"
 
 	"github.com/lestrrat-go/jwx/v2/x25519"
 )
@@ -126,6 +127,12 @@ func BytesToPubKey(keyBytes []byte, kt KeyType) (crypto.PublicKey, error) {
 			X:     x,
 			Y:     y,
 		}, nil
+	case SECP256k1Schnorr:
+		pubKey, err := schnorr.ParsePubKey(keyBytes)
+		if err != nil {
+			return nil, err
+		}
+		return *pubKey, nil
 	case P224:
 		var x, y *big.Int
 		x, y = elliptic.Unmarshal(elliptic.P224(), keyBytes)
@@ -194,6 +201,7 @@ func GetKeyTypeFromPrivateKey(key crypto.PrivateKey) (KeyType, error) {
 		key = reflect.ValueOf(key).Elem().Interface().(crypto.PrivateKey)
 	}
 
+	//TODO: Investigate when SECP256k1 vs SECP256k1ECDSA
 	switch k := key.(type) {
 	case ed25519.PrivateKey:
 		return Ed25519, nil
